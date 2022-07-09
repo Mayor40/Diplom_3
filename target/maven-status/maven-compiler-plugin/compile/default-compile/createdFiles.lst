@@ -1,6 +1,10 @@
-CredentialsPage.class
-MainPage.class
-AccountPage.class
-RegistrationPage.class
-RestorePasswordPage.class
-HeaderPage.class
+pageObject\HeaderPage.class
+pageObject\AccountPage.class
+userClient\RestAssuredClient.class
+pageObject\CredentialsPage.class
+pageObject\MainPage.class
+pageObject\RegistrationPage.class
+userClient\UserClient.class
+userModel\User.class
+pageObject\RestorePasswordPage.class
+userModel\UserCredentials.class

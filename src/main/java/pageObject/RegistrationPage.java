@@ -1,11 +1,10 @@
-import com.codeborne.selenide.Condition;
+package pageObject;
+
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
-import static com.codeborne.selenide.Selectors.byClassName;
 import static com.codeborne.selenide.Selectors.byXpath;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.Selenide.page;
@@ -13,8 +12,17 @@ import static com.codeborne.selenide.Selenide.page;
 public class RegistrationPage {
 
 
-    //поля для ввода учетных данных
-    private ElementsCollection regFields = $$(byXpath("html/body/div/div/main/div/form/fieldset/div/div/input"));
+    // локатор поля "Имя"
+    @FindBy(how = How.XPATH, using = ".//fieldset[1]//input")
+    private SelenideElement nameField;
+
+    // локатор поля "Email"
+    @FindBy(how = How.XPATH, using = ".//fieldset[2]//input")
+    private SelenideElement emailField;
+
+    // поле "Пароль"
+    @FindBy(how = How.XPATH, using = ".//input[@type='password']")
+    private SelenideElement passwordField;
 
     //локатор кнопки Войти
     @FindBy(how = How.LINK_TEXT, using = "Войти")
@@ -25,25 +33,25 @@ public class RegistrationPage {
     private SelenideElement registrationButton;
 
     //локатор сообщения об ошибке
-    @FindBy(how = How.XPATH, using = "html/body/div/div/main/div/form/fieldset/div/p")
+    @FindBy(how = How.XPATH, using = ".//*[contains (text(), 'Некорректный пароль')]")
     private SelenideElement incorrectPasswordMessage;
 
     //заполнение поля Имя
     public void enterName(String name) {
-        regFields.get(0).click();
-        regFields.get(0).setValue(name);
+        nameField.click();
+        nameField.setValue(name);
     }
 
     //заполнение поля Email
     public void enterEmail(String email) {
-        regFields.get(1).click();
-        regFields.get(1).setValue(email);
+        emailField.click();
+        emailField.setValue(email);
     }
 
     //заполнение поля Пароль
     public void enterPassword(String password) {
-        regFields.get(2).click();
-        regFields.get(2).setValue(password);
+        passwordField.click();
+        passwordField.setValue(password);
     }
 
     //нажатие кнопки Зарегистрироваться
@@ -63,6 +71,4 @@ public class RegistrationPage {
         enterReference.click();
         return page(CredentialsPage.class);
     }
-
-
 }

@@ -1,3 +1,5 @@
+package pageObject;
+
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
@@ -6,16 +8,15 @@ import static com.codeborne.selenide.Selenide.page;
 
 public class HeaderPage {
     //локатор кнопки Личный кабинет
-
-    @FindBy(how = How.XPATH, using = "html/body/div/div/header/nav/a/p")
+    @FindBy(how = How.XPATH, using = ".//p[contains(text(),'Личный Кабинет')]")
     private SelenideElement personalAccountButton;
 
     //локатор кнопки Конструктор
     @FindBy(how = How.XPATH, using = ".//p[text()='Конструктор']")
     private SelenideElement constructorButton;
 
-    //локатор логотипа "html/body/div/div/header/nav/div/a/svg"
-    @FindBy(how = How.XPATH, using = "html/body/div/div/header/nav/div")
+    //локатор логотипа
+    @FindBy(how = How.CSS, using = ".AppHeader_header__logo__2D0X2")
     private SelenideElement burgersLogo;
 
     //переход в личный кабинет после авторизации по кнопке Личный кабинет

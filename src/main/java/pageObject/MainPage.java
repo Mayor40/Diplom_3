@@ -1,10 +1,15 @@
+package pageObject;
+
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.page;
 
-public class MainPage {
+public class MainPage extends HeaderPage {
+
+    public static final String MAIN = "https://stellarburgers.nomoreparties.site/";
 
     //локатор кнопки Войти в аккаунт
     @FindBy(how = How.XPATH, using = ".//button[text()='Войти в аккаунт']")
@@ -49,9 +54,9 @@ public class MainPage {
         bulkiSection.click();
     }
 
-    public String bulkiHeaderText() {
-        String header = bulkiHeader.getText();
-        return header;
+    //отображение булок
+    public boolean bulkiListDisplayed() {
+        return bulkiHeader.shouldBe(visible).isDisplayed();
     }
 
     //переход к разделу Соусы
@@ -59,9 +64,9 @@ public class MainPage {
         sausesSection.click();
     }
 
-    public String sausesHeaderText() {
-        String header = sausesHeader.getText();
-        return header;
+    //отображение соусов
+    public boolean sauseListDisplayed() {
+        return sausesHeader.shouldBe(visible).isDisplayed();
     }
 
     //переход к разделу Начинки
@@ -69,9 +74,9 @@ public class MainPage {
         fillingsSection.click();
     }
 
-    public String fillingsHeaderText() {
-        String header = fillingsHeader.getText();
-        return header;
+    //отображение начинок
+    public boolean fillingsListDisplayed() {
+        return fillingsHeader.shouldBe(visible).isDisplayed();
     }
 
     //получить текст кнопки Оформить заказ
@@ -79,6 +84,4 @@ public class MainPage {
         String buttonText = orderBurgerButton.getText();
         return buttonText;
     }
-
-
 }
